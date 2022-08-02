@@ -21,6 +21,7 @@ export default function ViewVehicles(){
 
         getVehicles();
     },[])
+
     return(
         <div>
             <h1>Available Vehicles</h1>
@@ -49,6 +50,21 @@ export default function ViewVehicles(){
                         localStorage.setItem('vehicleType',vehicleType)
                     }
 
+                    function getVehicles() {
+                        axios.get('http://localhost:8000/api/vehicle/')
+                            .then((res) => {
+                                setVehicles(res.data)
+                                console.log(res.data)
+                            })
+                    }
+
+                    function deleteVehicle(id){
+                        axios.delete('http://localhost:8000/api/vehicle/delete/'+id)
+                            .then(()=>{
+                                getVehicles()
+                            })
+                    }
+
                     return(
                         <tr>
                         <td key={index}>{index+1}</td>
@@ -68,7 +84,7 @@ export default function ViewVehicles(){
                             </td>
 
                             <td>
-                                <button>Delete</button>
+                                <button onClick={()=>{deleteVehicle(vehicle._id)}}>Delete</button>
                             </td>
                         </tr>
                             )

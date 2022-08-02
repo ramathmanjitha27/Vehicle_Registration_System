@@ -54,7 +54,7 @@ module.exports.get_vehicle = async (req, res)=>{
 }
 
 module.exports.delete_vehicle = (req, res) =>{
-    let id = req.body.id;
+    let id = req.params.id;
 
     try {
         Vehicle.findByIdAndDelete({_id: id})
