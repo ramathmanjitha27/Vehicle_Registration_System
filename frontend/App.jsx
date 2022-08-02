@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import RegisterVehicle from "./components/RegisterVehicle";
 import ViewVehicles from "./components/ViewVehicles";
 import Home from "./components/Home";
+import ViewVehicle from "./components/ViewVehicle";
 
 
 
@@ -14,13 +15,9 @@ function App(){
                     <Route exact path = '/' element = {<Home/>}/>
                     <Route exact path = '/register' element = {<RegisterVehicle/>}/>
                     <Route exact path = '/vehicles' element = {<ViewVehicles/>}/>
+                    <Route exact path = '/vehicle' element = {<ViewVehicle/>}/>
                 </Routes>
             </Router>
-
-            {/*<Link to={'/registerVehicle'}>*/}
-            {/*    <button>Register Vehicle</button>*/}
-            {/*</Link>*/}
-
         </div>
     )
 }
