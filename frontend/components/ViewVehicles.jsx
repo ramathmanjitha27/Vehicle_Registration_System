@@ -28,6 +28,7 @@ export default function ViewVehicles(){
             <table>
                 <thead>
                 <tr>
+                    <th></th>
                     <th>Vehicle No</th>
                     <th>Owner's name</th>
                     <th>Vehicle Type</th>
@@ -61,7 +62,9 @@ export default function ViewVehicles(){
                             </Link>
                         </td>
                             <td>
-                                <button>Edit</button>
+                                <Link to={'/edit'}>
+                                <button onClick={()=>{passVehicle(vehicle)}}>Edit</button>
+                                </Link>
                             </td>
 
                             <td>
