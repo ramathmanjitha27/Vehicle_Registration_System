@@ -6,13 +6,13 @@ import Home from "./components/Home";
 import ViewVehicle from "./components/ViewVehicle";
 import EditVehicle from "./components/EditVehicle";
 import ValidateVehicle from "./components/ValidateVehicle";
-
-
+import Header from "./components/Header";
 
 function App(){
     return(
         <div>
             <Router>
+                <Header/>
                 <Routes>
                     <Route exact path = '/' element = {<Home/>}/>
                     <Route exact path = '/register' element = {<RegisterVehicle/>}/>

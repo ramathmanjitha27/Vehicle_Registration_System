@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {TextField} from "@mui/material";
 
 export default function ViewVehicle(){
     const[id, setID] = useState('')
@@ -21,35 +22,51 @@ export default function ViewVehicle(){
 
 
     return(
-        <div>
-            <h1>Vehicle Details</h1>
+        <div style={{paddingTop:"20px", paddingBottom: "3rem"}}>
+            <div style={{width: "60%", margin: "auto", }}>
+                <center><h1>Vehicle Details</h1></center>
+
+                <div
+                    style={{
+                        borderRadius: "10px",
+                        margin: "10px",
+                        padding: "",
+                        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+
+                    }}
+                >
 
             <form>
 
-                <lable>Owner's name</lable>
-                <input type={'text'} id={'ownerName'}  value={ownerName} readOnly={true}/>
+                <div style={{paddingInline: "3rem", paddingTop: "3rem", paddingBottom: "3rem"}}>
+
+                <h4>Owner's name</h4>
+                <TextField fullWidth type={'text'} id={'ownerName'}  value={ownerName} readOnly={true}/>
                 <br/><br/>
 
-                <lable>NIC</lable>
-                <input type={'text'} id={'NIC'} value={NIC} readOnly={true}/>
+                <h4>NIC</h4>
+                <TextField fullWidth type={'text'} id={'NIC'} value={NIC} readOnly={true}/>
                 <br/><br/>
 
-                <lable>Address</lable>
-                <input type={'text'} id={'address'} value={address} readOnly={true} />
+                <h4>Address</h4>
+                <TextField fullWidth type={'text'} id={'address'} value={address} readOnly={true} />
                 <br/><br/>
 
-                <lable>Mobile Number</lable>
-                <input type={'number'} id={'mobile'} value={mobile} readOnly={true}/>
+                <h4>Mobile Number</h4>
+                <TextField fullWidth type={'number'} id={'mobile'} value={mobile} readOnly={true}/>
                 <br/><br/>
 
-                <lable>Vehicle No</lable>
-                <input type={'text'} id={'vehicleNo'}  value={vehicleNo} readOnly={true}/>
+                <h4>Vehicle No</h4>
+                <TextField fullWidth type={'text'} id={'vehicleNo'}  value={vehicleNo} readOnly={true}/>
                 <br/><br/>
 
-                <lable>Vehicle Type</lable>
-                <input type={'text'} id={'vehicleType'}  value={vehicleType} readOnly={true}/>
+                <h4>Vehicle Type</h4>
+                <TextField fullWidth type={'text'} id={'vehicleType'}  value={vehicleType} readOnly={true}/>
                 <br/><br/>
+                </div>
             </form>
+        </div>
+        </div>
         </div>
     )
 }

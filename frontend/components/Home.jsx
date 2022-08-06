@@ -5,7 +5,7 @@ import ValidateVehicle from "./ValidateVehicle";
 export default function Home(){
     return(
         <div>
-            <h1>Welcome to Vehicle Registration System</h1>
+            <center><h1>Welcome to Vehicle Registration System</h1></center>
 
             <ValidateVehicle/>
             <br/><br/>
