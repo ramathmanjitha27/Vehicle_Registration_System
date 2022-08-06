@@ -2,7 +2,7 @@ const Vehicle = require('../models/vehicleModel')
 
 //determines the type of entered vehicle Number
 module.exports.validate_Vehicle = async (req, res)=> {
-    const vehicleNo = req.body.vehicleNo;
+    const vehicleNo = req.params.id;
 
     let vintageNoPattern = /^([0-9]{1,3}SRI[0-9]{4})$/
     let oldNoPattern = /^([0-9]{1,3}-[0-9]{4})$/
@@ -12,15 +12,19 @@ module.exports.validate_Vehicle = async (req, res)=> {
 
     if(vehicleNo.match(oldNoPattern)){
         console.log('Old Vehicle')
+        return res.json('Old Vehicle')
     }
     else if(vehicleNo.match(vintageNoPattern)){
         console.log('Vintage Vehicle')
+        return res.json('Vintage Vehicle')
     }
     else if(vehicleNo.match(modernNoPattern)){
         console.log('Modern Vehicle')
+        return res.json('Modern Vehicle')
     }
     else {
         console.log('Incorrect Input')
+        return res.json('Incorrect Input')
     }
 }
 

@@ -14,6 +14,6 @@ router.get('/', getVehicles)
 router.get('/:id', getVehicle)
 router.delete('/delete/:id', deleteVehicle)
 router.put('/update/:id', updateVehicle)
-router.post('/validate', validateVehicle)
+router.get('/validate/:id', validateVehicle)
 
 module.exports = router;
