@@ -67,7 +67,7 @@ export default function ViewVehicles(){
 
                     return(
                         <tr>
-                        <td key={index}>{index+1}</td>
+                        <td id={index}>{index+1}</td>
                         <td>{vehicle.vehicleNo}</td>
                         <td>{vehicle.ownerName}</td>
                         <td>{vehicle.vehicleType}</td>

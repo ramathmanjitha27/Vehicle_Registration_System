@@ -5,6 +5,7 @@ import ViewVehicles from "./components/ViewVehicles";
 import Home from "./components/Home";
 import ViewVehicle from "./components/ViewVehicle";
 import EditVehicle from "./components/EditVehicle";
+import ValidateVehicle from "./components/ValidateVehicle";
 
 
 
@@ -18,6 +19,7 @@ function App(){
                     <Route exact path = '/vehicles' element = {<ViewVehicles/>}/>
                     <Route exact path = '/vehicle' element = {<ViewVehicle/>}/>
                     <Route exact path = '/edit' element = {<EditVehicle/>}/>
+                    <Route exact path = '/validate' element = {<ValidateVehicle/>}/>
                 </Routes>
             </Router>
         </div>

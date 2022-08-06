@@ -1,5 +1,30 @@
 const Vehicle = require('../models/vehicleModel')
 
+//determines the type of entered vehicle Number
+module.exports.validate_Vehicle = async (req, res)=> {
+    const vehicleNo = req.body.vehicleNo;
+
+    let vintageNoPattern = /^([0-9]{1,3}SRI[0-9]{4})$/
+    let oldNoPattern = /^([0-9]{1,3}-[0-9]{4})$/
+    let modernNoPattern = /^[A-Z]{2,3}-[0-9]{4}$/
+
+    console.log(vehicleNo)
+
+    if(vehicleNo.match(oldNoPattern)){
+        console.log('Old Vehicle')
+    }
+    else if(vehicleNo.match(vintageNoPattern)){
+        console.log('Vintage Vehicle')
+    }
+    else if(vehicleNo.match(modernNoPattern)){
+        console.log('Modern Vehicle')
+    }
+    else {
+        console.log('Incorrect Input')
+    }
+}
+
+//Register Vehicle
 module.exports.add_Vehicle = async (req, res)=>{
     const {ownerName, address, mobile, NIC, vehicleNo, vehicleType} = req.body;
 
@@ -21,6 +46,7 @@ module.exports.add_Vehicle = async (req, res)=>{
         })
 }
 
+//Retrieve all registered vehicles
 module.exports.get_Vehicles = async (req, res)=>{
     const getVehicles = await Vehicle.find();
 
@@ -36,6 +62,7 @@ module.exports.get_Vehicles = async (req, res)=>{
     }
 }
 
+//Retrieve only one vehicle details
 module.exports.get_vehicle = async (req, res)=>{
     let id = req.params.id;
 
@@ -53,6 +80,7 @@ module.exports.get_vehicle = async (req, res)=>{
     }
 }
 
+//delete vehicle by ID
 module.exports.delete_vehicle = (req, res) =>{
     let id = req.params.id;
 
@@ -70,6 +98,7 @@ module.exports.delete_vehicle = (req, res) =>{
     }
 }
 
+//update the vehicle details
 module.exports.update_Vehicle = async (req, res) =>{
     const {ownerName, address, mobile, NIC, vehicleNo, vehicleType} = req.body;
     let id = req.params.id;
