@@ -1,6 +1,15 @@
 import * as yup from "yup";
 
-export const basicSchema = yup.object().shape({
+export const registerSchema = yup.object().shape({
+    ownerName : yup.string().required('Required owner name'),
+    NIC : yup.string()
+        .min(10, "Enter valid NIC")
+        .required('Required NIC'),
+    address : yup.string().required('Required address'),
+    mobile : yup.string()
+        .min(10, "Enter valid mobile number")
+        .required('Required mobile number'),
+    vehicleType : yup.string().required('Required vehicle type'),
     vehicleNo: yup.string()
         .required("Required vehicle number")
         .test('test-name', 'Enter Valid Vehicle Number',
@@ -20,5 +29,5 @@ export const basicSchema = yup.object().shape({
                 }
                 return true
             }
-            )
+        )
 });

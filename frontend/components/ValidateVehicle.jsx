@@ -5,9 +5,12 @@ import axios from "axios";
 import  '../App.css'
 import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
+import DisplayVehicleType from "./DisplayVehicleType";
+import ViewVehicle from "./ViewVehicle";
+import DisplayDetails from "./DisplayDetails";
 
 
-export default function ValidateVehicle(){
+export default function ValidateVehicle(props){
 
     const [vehiNo, setVehiNo] = useState('')
     const [vehicleType, setVehicleType] = useState('')
@@ -41,6 +44,7 @@ export default function ValidateVehicle(){
         validationSchema: basicSchema,
         onSubmit
     })
+
 
     return(
         <div style={{paddingTop:"20px", paddingBottom: "3rem"}}>
@@ -76,9 +80,9 @@ export default function ValidateVehicle(){
                 </center>
             </form>
 
-            <br/>
-            <h3><i>Vehicle Number</i> : {vehiNo}</h3>
-            <h3><i>Vehicle Type</i>   : {vehicleType}</h3>
+                             <h1>Display Vehicle Type</h1>
+                             <h3><i>Vehicle Number</i> : {vehiNo}</h3>
+                             <h3><i>Vehicle Type</i>   : {vehicleType}</h3>
         </div>
        </div>
       </div>
