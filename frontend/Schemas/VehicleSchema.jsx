@@ -1,22 +1,21 @@
 import * as yup from "yup";
 
-let vintageNoPattern = /^([0-9]{1,3}SRI[0-9]{4})$/
-let oldNoPattern = /^([0-9]{1,3}-[0-9]{4})$/
-
 export const basicSchema = yup.object().shape({
     vehicleNo: yup.string()
         .required("Required vehicle number")
         .test('test-name', 'Enter Valid Vehicle Number',
             function (value){
-                const vintageNoRegex = /^([0-9]{1,3}SRI[0-9]{4})$/
-                const oldNoRegex = /^([0-9]{1,3}-[0-9]{4})$/
-                const modernNoRegex = /^[A-Z]{2,3}-[0-9]{4}$/
+                const vintageNoRegex = /^(\s*[0-9]{1,3}\s*SRI\s*[0-9]{4}\s*)$/
+                const oldNoRegex = /^(\s*[0-9]{1,3}\s*-\s*[0-9]{4}\s*)$/
+                const modernNoRegexV1 = /^(\s*[A-Z]{2}\s*[A-Z]{2,3}\s*-\s*[0-9]{4}\s*)$/
+                const modernNoRegexV2 = /^(\s*[A-Z]{2,3}\s*-\s*[0-9]{4}\s*)$/
 
                 let isValidVintage = vintageNoRegex.test(value)
                 let isValidOld = oldNoRegex.test(value)
-                let isValidModern = modernNoRegex.test(value)
+                let isValidModernV1 = modernNoRegexV1.test(value)
+                let isValidModernV2 = modernNoRegexV2.test(value)
 
-                if(!isValidVintage && !isValidOld && !isValidModern){
+                if(!isValidVintage && !isValidOld && !isValidModernV1 && !isValidModernV2){
                     return false
                 }
                 return true

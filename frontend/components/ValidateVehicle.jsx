@@ -63,7 +63,7 @@ export default function ValidateVehicle(){
                     value={values.vehicleNo}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    id={'vehicleNo'} placeholder={'Type Vehicle No here...'}
+                    id={'vehicleNo'} placeholder={'Type vehicle number here...'}
                     className={errors.vehicleNo && touched.vehicleNo ? "input-error" : ""}
                 />
                 {errors.vehicleNo && touched.vehicleNo && <p className={'error'}>{errors.vehicleNo}</p>}
