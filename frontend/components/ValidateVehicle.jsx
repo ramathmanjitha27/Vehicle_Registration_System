@@ -1,59 +1,100 @@
 import React, {useState} from 'react'
+import {useFormik} from 'formik'
+import {basicSchema} from "../Schemas/VehicleSchema";
 import axios from "axios";
+import  '../App.css'
 import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 
+
 export default function ValidateVehicle(){
-    const [vehicleNo, setVehicleNo] = useState('')
+
     const [vehicleType, setVehicleType] = useState('')
     const [noSpacesVehiNo, setNoSpacesVehiNo] = useState('')
 
-    const handleValidate = (event)=>{
+    const onSubmit = async (values, actions) => {
+        let vehiNo = values.vehicleNo;
+        console.log(`Vehicle No : ${vehiNo}`);
 
-        let removeSpacesVehiNo = vehicleNo.replace(/ /g,'');
+        let removeSpacesVehiNo =  vehiNo.replace(/ /g,'');
         setNoSpacesVehiNo(removeSpacesVehiNo)
 
-        axios.get('http://localhost:8000/api/vehicle/validate/'+removeSpacesVehiNo)
+        console.log(`Executed ${removeSpacesVehiNo}`)
+
+        axios.get('http://localhost:8001/api/vehicle/validate/'+removeSpacesVehiNo)
             .then((res)=>{
                 setVehicleType(res.data)
             })
             .catch((err)=>{
                 alert(err.message)
             })
-    }
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        actions.resetForm();
+    };
+
+    const {values, errors,handleBlur, handleChange, handleSubmit, touched, isSubmitting} = useFormik({
+
+        initialValues : {
+            vehicleNo : ''
+        },
+        validationSchema: basicSchema,
+        onSubmit
+    })
 
     return(
         <div style={{paddingTop:"20px", paddingBottom: "3rem"}}>
-            <div style={{width: "60%", margin: "auto", }}>
+                        <div style={{width: "60%", margin: "auto", }}>
 
-                <center><u><h2>Validate Vehicle Type</h2></u></center>
-                <div
-                    style={{
-                        borderRadius: "10px",
-                        margin: "10px",
-                        padding: "",
-                        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
-                    }}
-                >
-            <div style={{paddingInline: "3rem", paddingTop: "3rem", paddingBottom: "3rem"}}>
+                              <center><h2>Validate Vehicle Type</h2></center>
+                              <div
+                             style={{
+                                    borderRadius: "10px",
+                                     margin: "10px",
+                                     padding: "",
+                                      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+                                 }}
+                             >
+                         <div style={{paddingInline: "3rem", paddingTop: "3rem", paddingBottom: "3rem"}}>
 
-            <TextField fullWidth type={'text'} id={'vehiNo'} placeholder = 'Type vehicle number here...'
-            onChange={(e)=>{
-                setVehicleNo(e.target.value)
-            }}
-            />
+            <form onSubmit={handleSubmit}>
 
-            <center>
-            <Button variant="contained" color="info" style={{marginRight: "5px", marginTop:'2rem', marginBottom:'1rem'}}
-                    onClick={handleValidate}>Validate</Button>
-            </center>
+                <input fullWidth
+                    value={values.vehicleNo}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    id={'vehicleNo'} placeholder={'Type Vehicle No here...'}
+                    className={errors.vehicleNo && touched.vehicleNo ? "input-error" : ""}
+                />
+                {errors.vehicleNo && touched.vehicleNo && <p className={'error'}>{errors.vehicleNo}</p>}
 
-                <h3><i>Vehicle Number</i> : {noSpacesVehiNo}</h3>
-                <h3><i>Vehicle Type</i>   : {vehicleType}</h3>
+                <center>
+                <Button variant="contained" color="info"
+                        style={{marginRight: "5px", marginTop:'2rem', marginBottom:'1rem'}}
+                        disabled={isSubmitting}
+                        type={'submit'}>Submit</Button>
+                </center>
+            </form>
 
-            </div>
+            <br/>
+            <h3><i>Vehicle Number</i> : {noSpacesVehiNo}</h3>
+            <h3><i>Vehicle Type</i>   : {vehicleType}</h3>
         </div>
-        </div>
-        </div>
+       </div>
+      </div>
+     </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@ import ViewVehicle from "./components/ViewVehicle";
 import EditVehicle from "./components/EditVehicle";
 import ValidateVehicle from "./components/ValidateVehicle";
 import Header from "./components/Header";
+// import "./App.css";
 
 function App(){
     return(
