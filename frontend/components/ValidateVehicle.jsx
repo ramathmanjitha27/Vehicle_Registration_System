@@ -9,15 +9,15 @@ import Button from "@mui/material/Button";
 
 export default function ValidateVehicle(){
 
+    const [vehiNo, setVehiNo] = useState('')
     const [vehicleType, setVehicleType] = useState('')
-    const [noSpacesVehiNo, setNoSpacesVehiNo] = useState('')
 
     const onSubmit = async (values, actions) => {
-        let vehiNo = values.vehicleNo;
-        console.log(`Vehicle No : ${vehiNo}`);
+         let vehicleNumber = values.vehicleNo;
+        console.log(`Vehicle No : ${vehicleNumber}`);
+        setVehiNo(vehicleNumber)
 
-        let removeSpacesVehiNo =  vehiNo.replace(/ /g,'');
-        setNoSpacesVehiNo(removeSpacesVehiNo)
+        let removeSpacesVehiNo =  vehicleNumber.replace(/ /g,'');
 
         console.log(`Executed ${removeSpacesVehiNo}`)
 
@@ -77,7 +77,7 @@ export default function ValidateVehicle(){
             </form>
 
             <br/>
-            <h3><i>Vehicle Number</i> : {noSpacesVehiNo}</h3>
+            <h3><i>Vehicle Number</i> : {vehiNo}</h3>
             <h3><i>Vehicle Type</i>   : {vehicleType}</h3>
         </div>
        </div>

@@ -6,26 +6,32 @@ module.exports.validate_Vehicle = async (req, res)=> {
 
     let vintageNoPatternRegex = /^([0-9]{1,3}SRI[0-9]{4})$/
     let oldNoPatternRegex = /^([0-9]{1,3}-[0-9]{4})$/
-    let modernNoPatternRegexV1 = /^([A-Z]{2}[A-Z]{1,2}-[0-9]{4})$/
-    const modernNoPatternRegexV2 = /^([A-Z]{2,3}-\[0-9]{4})$/
+    let modernNoPatternRegexV1 = /^([A-Z]{2}[A-Z]{2,3}-[0-9]{4})$/
+    const modernNoPatternRegexV2 = /^([A-Z]{2,3}-[0-9]{4})$/
 
     console.log(vehicleNo)
 
-    if(vehicleNo.match(oldNoPatternRegex)){
-        console.log('Old Vehicle')
-        return res.json('Old Vehicle')
-    }
-    else if(vehicleNo.match(vintageNoPatternRegex)){
-        console.log('Vintage Vehicle')
-        return res.json('Vintage Vehicle')
-    }
-    else if(vehicleNo.match(modernNoPatternRegexV1 ||modernNoPatternRegexV2 )){
-        console.log('Modern Vehicle')
-        return res.json('Modern Vehicle')
-    }
-    else {
-        console.log('Incorrect Input')
-        return res.json('Incorrect Input')
+    try {
+        if (vehicleNo.match(oldNoPatternRegex)) {
+            console.log('Old Vehicle')
+            return res.json('Old Vehicle')
+        } else if (vehicleNo.match(vintageNoPatternRegex)) {
+            console.log('Vintage Vehicle')
+            return res.json('Vintage Vehicle')
+        } else if (vehicleNo.match(modernNoPatternRegexV1)) {
+            console.log('Modern Vehicle')
+            return res.json('Modern Vehicle')
+        }else if (vehicleNo.match(modernNoPatternRegexV2)) {
+            console.log('Modern Vehicle')
+            return res.json('Modern Vehicle')
+        }
+        else {
+            console.log('Incorrect Input')
+            return res.json('Incorrect Input')
+        }
+    }catch (err){
+        console.log(err)
+        res.status(500).send("Something get wrong when validating vehicles")
     }
 }
 
