@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-
+//vehicle model
 const vehicleSchema = new Schema({
     ownerName : {
         type : String,

@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-
 const app = express()
 const cors = require('cors')
 const {connection} = require("mongoose");
@@ -19,7 +18,7 @@ const conn = mongoose.connection;
 conn.once('open', () => {
     console.log('Mongodb Connection Success!');
 });
-
+//vehicle api path
 app.use('/api/vehicle', require('./routes/vehicleRouter'))
 
 app.listen(PORT, ()=>{

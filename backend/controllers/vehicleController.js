@@ -1,6 +1,6 @@
 const Vehicle = require('../models/vehicleModel')
 
-//determines the type of entered vehicle Number
+//determines the vehicle type and return
 module.exports.validate_Vehicle = async (req, res)=> {
     const vehicleNo = req.params.id;
 

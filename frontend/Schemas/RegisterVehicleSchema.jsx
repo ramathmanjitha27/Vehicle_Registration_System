@@ -1,5 +1,6 @@
 import * as yup from "yup";
 
+//Validate user input when registering
 export const registerSchema = yup.object().shape({
     ownerName : yup.string().required('Required owner name'),
     NIC : yup.string()

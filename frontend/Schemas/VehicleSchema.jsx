@@ -1,5 +1,6 @@
 import * as yup from "yup";
 
+//validate vehicle number frontend
 export const basicSchema = yup.object().shape({
     vehicleNo: yup.string()
         .required("Required vehicle number")
