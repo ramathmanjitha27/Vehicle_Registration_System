@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
+import {Link} from "react-router-dom";
 
 export default function ViewVehicle(){
     const[id, setID] = useState('')
@@ -24,7 +26,7 @@ export default function ViewVehicle(){
     return(
         <div style={{paddingTop:"20px", paddingBottom: "3rem"}}>
             <div style={{width: "60%", margin: "auto", }}>
-                <center><h1>Vehicle Details</h1></center>
+                <center><h1>Register Vehicle</h1></center>
 
                 <div
                     style={{
@@ -36,37 +38,68 @@ export default function ViewVehicle(){
                     }}
                 >
 
-            <form>
+                    <form>
+                        <div style={{paddingInline: "3rem", paddingTop: "3rem", paddingBottom: "3rem"}}>
 
-                <div style={{paddingInline: "3rem", paddingTop: "3rem", paddingBottom: "3rem"}}>
+                            <h4>Vehicle No</h4>
+                            <input fullWidth
+                                   value={vehicleNo}
+                                   id={'vehicleNo'}
+                                   readOnly={true}
+                            />
+                            <br/><br/>
 
-                <h4>Owner's name</h4>
-                <TextField fullWidth type={'text'} id={'ownerName'}  value={ownerName} readOnly={true}/>
-                <br/><br/>
+                            <h4>Vehicle Type</h4>
+                            <input fullWidth
+                                   value={vehicleType}
+                                   readOnly={true}
+                            />
+                            <br/><br/>
 
-                <h4>NIC</h4>
-                <TextField fullWidth type={'text'} id={'NIC'} value={NIC} readOnly={true}/>
-                <br/><br/>
+                            <hr/>
 
-                <h4>Address</h4>
-                <TextField fullWidth type={'text'} id={'address'} value={address} readOnly={true} />
-                <br/><br/>
+                            <h4>Owner's name</h4>
+                            <input fullWidth
+                                   value={ownerName}
+                                   id={'ownerName'}
+                                   readOnly={true}
+                            />
 
-                <h4>Mobile Number</h4>
-                <TextField fullWidth type={'number'} id={'mobile'} value={mobile} readOnly={true}/>
-                <br/><br/>
+                            <h4>NIC</h4>
+                            <input fullWidth
+                                   value={NIC}
+                                   id={'NIC'}
+                                   readOnly={true}
+                            />
+                            <br/><br/>
 
-                <h4>Vehicle No</h4>
-                <TextField fullWidth type={'text'} id={'vehicleNo'}  value={vehicleNo} readOnly={true}/>
-                <br/><br/>
+                            <h4>Address</h4>
+                            <input fullWidth
+                                   value={address}
+                                   id={'address'}
+                                   readOnly={true}
+                            />
+                            <br/><br/>
 
-                <h4>Vehicle Type</h4>
-                <TextField fullWidth type={'text'} id={'vehicleType'}  value={vehicleType} readOnly={true}/>
-                <br/><br/>
+                            <h4>Mobile Number</h4>
+                            <input fullWidth
+                                   value={mobile}
+                                   id={'mobile'}
+                                   readOnly={true}
+                            />
+                            <br/><br/>
+
+                            <Link to={'/vehicles'}>
+                                <Button variant="contained" color="info" style={{marginRight: "5px"}}>Back</Button>
+                            </Link>
+
+
+                        </div>
+
+                    </form>
+
                 </div>
-            </form>
-        </div>
-        </div>
+            </div>
         </div>
     )
 }

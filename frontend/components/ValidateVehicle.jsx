@@ -3,14 +3,10 @@ import {useFormik} from 'formik'
 import {basicSchema} from "../Schemas/VehicleSchema";
 import axios from "axios";
 import  '../App.css'
-import {TextField} from "@mui/material";
+import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
-import DisplayVehicleType from "./DisplayVehicleType";
-import ViewVehicle from "./ViewVehicle";
-import DisplayDetails from "./DisplayDetails";
 
-
-export default function ValidateVehicle(props){
+export default function ValidateVehicle(){
 
     const [vehiNo, setVehiNo] = useState('')
     const [vehicleType, setVehicleType] = useState('')
@@ -21,10 +17,11 @@ export default function ValidateVehicle(props){
         setVehiNo(vehicleNumber)
 
         let removeSpacesVehiNo =  vehicleNumber.replace(/ /g,'');
+        console.log(actions)
 
         console.log(`Executed ${removeSpacesVehiNo}`)
 
-        axios.get('http://localhost:8001/api/vehicle/validate/'+removeSpacesVehiNo)
+        axios.get('http://localhost:8000/api/vehicle/validate/'+removeSpacesVehiNo)
             .then((res)=>{
                 setVehicleType(res.data)
             })
@@ -45,9 +42,17 @@ export default function ValidateVehicle(props){
         onSubmit
     })
 
+    const passValue= (vehicleNo, VehicleType)=>{
+        let removeSpacesVehiNo =  vehicleNo.replace(/ /g,'');
+        localStorage.setItem('vehicleNo', removeSpacesVehiNo)
+        localStorage.setItem('VehicleType', VehicleType)
+        console.log(vehicleNo, vehicleType)
+
+
+    }
 
     return(
-        <div style={{paddingTop:"20px", paddingBottom: "3rem"}}>
+        <div style={{paddingTop:"5px", paddingBottom: "3rem"}}>
                         <div style={{width: "60%", margin: "auto", }}>
 
                               <center><h2>Validate Vehicle Type</h2></center>
@@ -74,31 +79,27 @@ export default function ValidateVehicle(props){
 
                 <center>
                 <Button variant="contained" color="info"
-                        style={{marginRight: "5px", marginTop:'2rem', marginBottom:'1rem'}}
+                        style={{marginRight: "5px", marginTop:'1rem', marginBottom:'1rem'}}
                         disabled={isSubmitting}
-                        type={'submit'}>Submit</Button>
+                        type={'submit'}>Validate</Button>
                 </center>
             </form>
+              <hr/>
+            <h1>Vehicle Type</h1>
+            <h3><i>Vehicle Number</i> : {vehiNo}</h3>
+            <h3><i>Vehicle Type</i>   : {vehicleType}</h3>
 
-                             <h1>Display Vehicle Type</h1>
-                             <h3><i>Vehicle Number</i> : {vehiNo}</h3>
-                             <h3><i>Vehicle Type</i>   : {vehicleType}</h3>
+              <center>
+                   <Link style={{pointerEvents: vehicleType ? '' : 'none'}} to={'/register'}>
+                      <Button disabled={!vehicleType} onClick={passValue(vehiNo, vehicleType)}
+                              variant="contained" color="info"
+                               style={{marginRight: "5px", marginTop:'2rem', marginBottom:'1rem'}}
+                       >Register</Button>
+                   </Link>
+              </center>
         </div>
        </div>
       </div>
      </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,47 +1,57 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import {useFormik} from "formik";
-import {basicSchema} from "../Schemas/VehicleSchema";
 import {registerSchema} from "../Schemas/RegisterVehicleSchema";
+import {Link} from "react-router-dom";
 
 export default function RegisterVehicle(){
 
-    const[ownerName, setOwnerName] = useState('');
-    const [address, setAddress] = useState('')
-    const [mobile, setMobile] = useState('')
-    const [NIC, setNIC] = useState('')
     const [vehicleNo, setVehicleNo] = useState('')
     const [vehicleType, setVehicleType] = useState('')
 
-    const onSubmit = async (values, actions) => {
-        let vehicleNumber = values.vehicleNo;
-        console.log(`Vehicle No : ${vehicleNumber}`);
+    useEffect(()=>{
+        setVehicleNo(localStorage.getItem('vehicleNo'))
+        setVehicleType(localStorage.getItem('VehicleType'))
+    },[])
 
-        axios.get('http://localhost:8001/api/vehicle/validate/'+removeSpacesVehiNo)
-            .then((res)=>{
-                setVehicleType(res.data)
+    const onSubmit = async (values, actions) => {
+        console.log('submit called')
+        let ownerName = values.ownerName;
+        let address = values.address;
+        let NIC = values.NIC;
+        let mobile = values.mobile;
+        console.log(`Vehicle No : ${vehicleNo}`);
+
+        const newVehicle = {
+            ownerName,
+            address,
+            NIC,
+            mobile,
+            vehicleNo,
+            vehicleType
+        }
+
+        axios.post('http://localhost:8000/api/vehicle/', newVehicle)
+            .then(()=>{
+                alert(`Succesfully registered the vehicle ${vehicleNo}`)
+                window.location.href = '/'
             })
             .catch((err)=>{
-                alert(err.message)
+                alert(err)
+                console.log(err)
             })
-
         await new Promise((resolve) => setTimeout(resolve, 1000));
         actions.resetForm();
     };
 
-
     const {values, errors,handleBlur, handleChange, handleSubmit, touched, isSubmitting} = useFormik({
 
         initialValues : {
-            vehicleNo : '',
             ownerName : '',
             address : '',
             mobile : '',
             NIC : '',
-            vehicleType : ''
-
         },
         validationSchema: registerSchema,
         onSubmit
@@ -65,6 +75,23 @@ export default function RegisterVehicle(){
                     <form onSubmit={handleSubmit}>
 
                         <div style={{paddingInline: "3rem", paddingTop: "3rem", paddingBottom: "3rem"}}>
+
+                            <h4>Vehicle No</h4>
+                            <input fullWidth
+                                   value={vehicleNo}
+                                   id={'vehicleNo'}
+                                   readOnly={true}
+                            />
+                            <br/><br/>
+
+                            <h4>Vehicle Type</h4>
+                            <input fullWidth
+                                   value={vehicleType}
+                                   readOnly={true}/>
+
+                            <br/><br/>
+
+                            <hr/>
 
                             <h4>Owner's name</h4>
                             <input fullWidth
@@ -111,36 +138,13 @@ export default function RegisterVehicle(){
                             {errors.mobile && touched.mobile && <p className={'error'}>{errors.mobile}</p>}
                             <br/><br/>
 
-                            <h4>Vehicle No</h4>
-                            <input fullWidth
-                                   value={values.vehicleNo}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   id={'vehicleNo'} placeholder={"Type vehicle number here..."}
-                                   className={errors.vehicleNo && touched.vehicleNo ? "input-error" : ""}
-                            />
-                            {errors.vehicleNo && touched.vehicleNo && <p className={'error'}>{errors.vehicleNo}</p>}
-                            <br/><br/>
-
-                            <h4>Vehicle Type</h4>
-                            <input fullWidth
-                                   value={values.vehicleType}
-                                   onChange={handleChange}
-                                   onBlur={handleBlur}
-                                   id={'vehicleType'} placeholder={"Type vehicle number here..."}
-                                   className={errors.vehicleType && touched.vehicleType ? "input-error" : ""}
-                            />
-                            {errors.vehicleType && touched.vehicleType && <p className={'error'}>{errors.vehicleType}</p>}
-                            <br/><br/>
 
                             <Button variant="contained" color="info" style={{marginRight: "5px"}}
-                                    disabled={isSubmitting}
-                                    type={'submit'}>Register</Button>
+                                    type={'submit'}>Register
+                            </Button>
 
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>

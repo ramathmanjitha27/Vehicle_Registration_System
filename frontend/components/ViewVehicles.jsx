@@ -11,7 +11,6 @@ import Table from "@mui/material/Table";
 import Button from "@mui/material/Button";
 import TableBody from "@mui/material/TableBody";
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#093e94",
@@ -31,7 +30,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
-
 
 export default function ViewVehicles(){
 
@@ -94,11 +92,13 @@ export default function ViewVehicles(){
                                     })
                             }
 
-                            function deleteVehicle(id){
-                                axios.delete('http://localhost:8000/api/vehicle/delete/'+id)
-                                    .then(()=>{
-                                        getVehicles()
-                                    })
+                            function deleteVehicle(id, vehicleNo){
+                                if (window.confirm(`Are you want to delete vehicle  ${vehicleNo}`)){
+                                    axios.delete('http://localhost:8000/api/vehicle/delete/'+id)
+                                        .then(()=>{
+                                            getVehicles()
+                                        })
+                                }
                             }
 
                             return(
@@ -122,7 +122,8 @@ export default function ViewVehicles(){
 
                                     <StyledTableCell align="center">
 
-                                            <Button variant="contained" onClick={()=>{deleteVehicle(vehicle._id)}}>Delete</Button>
+                                            <Button variant="contained" onClick={()=>{deleteVehicle(vehicle._id, vehicle.vehicleNo)}}
+                                            >Delete</Button>
 
                                                 </StyledTableCell>
                                                 </StyledTableRow>

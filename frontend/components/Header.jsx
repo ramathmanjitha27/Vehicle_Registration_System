@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import logo from './images/logoVehicle.jpg'
 
 const pages = ['Home', 'Vehicles'];
 
@@ -30,7 +31,9 @@ const Header = () => {
         <AppBar position="static" style={{ background: '#053769' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
+                    <img src={logo} alt="logo" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1,  }}
+                         style={{ width:"2.5%", paddingRight:"10px"}} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -46,7 +49,7 @@ const Header = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                       VRS
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
