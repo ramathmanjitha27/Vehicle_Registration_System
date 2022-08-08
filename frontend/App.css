@@ -22,7 +22,7 @@ select {
     border: 2px solid #4a5568;
     background-color: ghostwhite;
     border-radius: 10px;
-    border-color : darkslategray;
+    border-color : gray;
     outline: none;
 }
 

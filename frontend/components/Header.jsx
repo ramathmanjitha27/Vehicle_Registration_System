@@ -7,16 +7,26 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from './images/logoVehicle.jpg'
-
-const pages = ['Home', 'Vehicles'];
+import Button from '@mui/material/Button';
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const adminItems = [
+        {
+            text: 'Home',
+            onClick: () => navigate('/'),
+        },
+        {
+            text: 'Vehicles',
+            onClick: () => navigate('/vehicles'),
+        },
+    ];
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -31,9 +41,8 @@ const Header = () => {
         <AppBar position="static" style={{ background: '#053769' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
                     <img src={logo} alt="logo" sx={{ display: { xs: 'none', md: 'flex' }, mr: 1,  }}
-                         style={{ width:"2.5%", paddingRight:"10px"}} />
+                         style={{ width:"4.5%", paddingRight:"10px"}} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -49,7 +58,7 @@ const Header = () => {
                             textDecoration: 'none',
                         }}
                     >
-                       VRS
+                        VRS
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -81,11 +90,16 @@ const Header = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+
+                                {adminItems.map((adminItem) => {
+                                    const { text, onClick } = adminItem;
+                                    return (
+                                        <MenuItem key={text} onClick={onClick}>
+                                            <Typography textAlign="center">{text}</Typography>
+                                        </MenuItem>
+                                    );
+                                })
+                                        }
                         </Menu>
                     </Box>
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -108,17 +122,21 @@ const Header = () => {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                    </Box>
 
+                        { adminItems.map((adminItem) => {
+                                const { text, onClick } = adminItem;
+                                return (
+                                    <Button
+                                        key={text}
+                                        onClick={onClick}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        {text}
+                                    </Button>
+                                );
+                            })
+                                    }
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>

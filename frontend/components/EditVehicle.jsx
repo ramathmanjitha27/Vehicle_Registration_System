@@ -152,7 +152,7 @@ export default function EditVehicle(){
                                     >Back</Button>
                             </Link>
 
-                            <Button variant="contained" color="info" style={{marginRight: "5px", marginLeft:'530px'}}
+                            <Button variant="contained" color="info" style={{marginRight:'10px'}}
                                     type={'submit'}>Edit</Button>
                         </div>
                     </form>
