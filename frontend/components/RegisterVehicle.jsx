@@ -3,8 +3,8 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import {useFormik} from "formik";
 import {registerSchema} from "../Schemas/RegisterVehicleSchema";
-import {Link} from "react-router-dom";
 
+//Register vehicle details
 export default function RegisterVehicle(){
 
     const [vehicleNo, setVehicleNo] = useState('')
@@ -88,7 +88,6 @@ export default function RegisterVehicle(){
                             <input fullWidth
                                    value={vehicleType}
                                    readOnly={true}/>
-
                             <br/><br/>
 
                             <hr/>
@@ -103,9 +102,7 @@ export default function RegisterVehicle(){
                             />
                             {errors.ownerName && touched.ownerName && <p className={'error'}>{errors.ownerName}</p>}
 
-
                             <h4>NIC</h4>
-
                             <input fullWidth
                                    value={values.NIC}
                                    onChange={handleChange}
@@ -137,7 +134,6 @@ export default function RegisterVehicle(){
                             />
                             {errors.mobile && touched.mobile && <p className={'error'}>{errors.mobile}</p>}
                             <br/><br/>
-
 
                             <Button variant="contained" color="info" style={{marginRight: "5px"}}
                                     type={'submit'}>Register

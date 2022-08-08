@@ -6,20 +6,16 @@ import  '../App.css'
 import {Link} from "react-router-dom";
 import Button from "@mui/material/Button";
 
+//Validate vehicle type based on user entered vehicle number
 export default function ValidateVehicle(){
 
     const [vehiNo, setVehiNo] = useState('')
     const [vehicleType, setVehicleType] = useState('')
 
     const onSubmit = async (values, actions) => {
-         let vehicleNumber = values.vehicleNo;
-        console.log(`Vehicle No : ${vehicleNumber}`);
+        let vehicleNumber = values.vehicleNo;
         setVehiNo(vehicleNumber)
-
         let removeSpacesVehiNo =  vehicleNumber.replace(/ /g,'');
-        console.log(actions)
-
-        console.log(`Executed ${removeSpacesVehiNo}`)
 
         axios.get('http://localhost:8000/api/vehicle/validate/'+removeSpacesVehiNo)
             .then((res)=>{
@@ -46,9 +42,6 @@ export default function ValidateVehicle(){
         let removeSpacesVehiNo =  vehicleNo.replace(/ /g,'');
         localStorage.setItem('vehicleNo', removeSpacesVehiNo)
         localStorage.setItem('VehicleType', VehicleType)
-        console.log(vehicleNo, vehicleType)
-
-
     }
 
     return(
@@ -91,12 +84,14 @@ export default function ValidateVehicle(){
 
               <center>
                    <Link style={{pointerEvents: vehicleType ? '' : 'none'}} to={'/register'}>
-                      <Button disabled={!vehicleType} onClick={passValue(vehiNo, vehicleType)}
+                      <Button disabled={!vehicleType}
+                              onClick={passValue(vehiNo, vehicleType)}
                               variant="contained" color="info"
                                style={{marginRight: "5px", marginTop:'2rem', marginBottom:'1rem'}}
                        >Register</Button>
                    </Link>
               </center>
+
         </div>
        </div>
       </div>

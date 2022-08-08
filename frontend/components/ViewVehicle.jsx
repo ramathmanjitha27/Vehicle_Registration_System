@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 
+//Display vehicle details
 export default function ViewVehicle(){
     const[id, setID] = useState('')
     const[ownerName, setOwnerName] = useState('');
@@ -93,11 +93,8 @@ export default function ViewVehicle(){
                                 <Button variant="contained" color="info" style={{marginRight: "5px"}}>Back</Button>
                             </Link>
 
-
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>

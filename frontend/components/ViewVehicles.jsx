@@ -31,12 +31,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
+//Display all vehicles
 export default function ViewVehicles(){
 
     const [vehicles, setVehicles] = useState([])
 
     useEffect(()=>{
-
         function getVehicles() {
             axios.get('http://localhost:8000/api/vehicle/')
                 .then((res) => {
