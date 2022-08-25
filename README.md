@@ -1,11 +1,7 @@
 # Vehicle_Registration_System
  
  Vehicles registration web application
-
-## Description
-
-* Backend: RESTful web services 
-* Frontend: React JS 
+  
 
 ## Getting Started
 
@@ -20,7 +16,7 @@ npm install
 
 ### Executing program
 
-* Create a .env file in backend service server
+* Create a .env file in backend with MongoDB database link.
 * Copy the following with your details:
 ```
 MONGODB_URL= <Enter MongoDB link here>
