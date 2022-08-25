@@ -77,7 +77,8 @@ export default function ValidateVehicle(){
                         type={'submit'}>Validate</Button>
                 </center>
             </form>
-              <hr/>
+
+            <hr/>
             <h1>Vehicle Type</h1>
             <h3><i>Vehicle Number</i> : {vehiNo}</h3>
             <h3><i>Vehicle Type</i>   : {vehicleType}</h3>

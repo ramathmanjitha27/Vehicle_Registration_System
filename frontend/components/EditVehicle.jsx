@@ -114,7 +114,6 @@ export default function EditVehicle(){
                             {errors.ownerName && touched.ownerName && <p className={'error'}>{errors.ownerName}</p>}
 
                             <h4>NIC</h4>
-
                             <input fullWidth
                                    value={values.NIC || NIC}
                                    onChange={handleChange}
@@ -127,7 +126,7 @@ export default function EditVehicle(){
 
                             <h4>Address</h4>
                             <input fullWidth
-                                   value={address}
+                                   value={values.address || address}
                                    onChange={handleChange}
                                    onBlur={handleBlur}
                                    id={'address'} placeholder={"Type address here..."}
@@ -138,7 +137,7 @@ export default function EditVehicle(){
 
                             <h4>Mobile Number</h4>
                             <input fullWidth
-                                   value={mobile}
+                                   value={values.mobile || mobile}
                                    onChange={handleChange}
                                    onBlur={handleBlur}
                                    id={'mobile'} placeholder={"Type mobile number here..."}

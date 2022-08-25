@@ -41,7 +41,6 @@ export default function ViewVehicles(){
             axios.get('http://localhost:8000/api/vehicle/')
                 .then((res) => {
                     setVehicles(res.data)
-                    console.log(res.data)
                 })
                 .catch((err)=>{
                     alert(err.message)

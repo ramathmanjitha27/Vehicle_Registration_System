@@ -7,7 +7,7 @@ export const basicSchema = yup.object().shape({
         .test('test-name', 'Enter Valid Vehicle Number',
             function (value){
                 const vintageNoRegex = /^(\s*[0-9]{1,3}\s*SRI\s*[0-9]{4}\s*)$/
-                const oldNoRegex = /^(\s*[0-9]{1,3}\s*-\s*[0-9]{4}\s*)$/
+                const oldNoRegex = /^(\s*[0-9]{2,3}\s*-\s*[0-9]{4}\s*)$/
                 const modernNoRegexV1 = /^(\s*[A-Z]{2} \s*[A-Z]{2,3}\s*-\s*[0-9]{4}\s*)$/
                 const modernNoRegexV2 = /^(\s*[A-Z]{2,3}\s*-\s*[0-9]{4}\s*)$/
 
